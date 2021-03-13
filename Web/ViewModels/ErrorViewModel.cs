@@ -1,4 +1,4 @@
-namespace DomainModels.Entities
+namespace Web.ViewModels
 {
     public class ErrorViewModel
     {

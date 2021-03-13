@@ -1,28 +1,46 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using DomainModels.Entities;
-using DomainModels.Enums;
+using Domain.Entities;
+using System.Threading.Tasks;
+using System.Threading;
 
-namespace DatabaseContext.Context
+namespace Domain.Context
 {
     public class AppDbContext : DbContext, IAppDbContext
     {
         public DbSet<Log> Logs { get; set; }
+        public DbSet<Payment> Payments { get; set; }
+        public DbSet<PaymentDetail> PaymentDetails { get; set; }
+
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         { }
 
-        public AppDbContext()
-        { }
+        public override int SaveChanges()
+        {
+            return base.SaveChanges(true);
+        }
+
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            return base.SaveChangesAsync(true, cancellationToken);
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
         }
-
-        public AppDbContext db
-        {
-            get { return this; }
-        }
     }
 
-    public interface IAppDbContext { }
+    public interface IAppDbContext
+    {
+        DbSet<Log> Logs { get; set; }
+
+        DbSet<Payment> Payments { get; set; }
+
+        public DbSet<PaymentDetail> PaymentDetails { get; set; }
+
+
+        int SaveChanges();
+
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
+    }
 }

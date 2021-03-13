@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DomainModels.Enums
+namespace Domain.Enums
 {
     public enum State
     {
@@ -23,25 +23,25 @@ namespace DomainModels.Enums
             switch (state)
             {
                 case State.RequestFromUser:
-                    message = "";
+                    message = "درخواست ارسالی";
                     break;
                 case State.SendToGateway:
-                    message = "";
+                    message = "ارسال به درگاه";
                     break;
                 case State.RequestFailed:
-                    message = "";
+                    message = "ناموفق";
                     break;
                 case State.RequestSucceed:
-                    message = "";
+                    message = "موفق";
                     break;
                 case State.SendToUser:
-                    message = "";
+                    message = "ارسال جواب درخواست";
                     break;
                 case State.Finished:
-                    message = "";
+                    message = "اتمام عملیات";
                     break;
                 default:
-                    message = "";
+                    message = "نامعلوم";
                     break;
             }
 

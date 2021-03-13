@@ -1,26 +1,26 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using DomainModels.Enums;
+using Domain.Enums;
 
-namespace DomainModels.Entities
+namespace Domain.Entities
 {
-    [Table("PaymentRequests", Schema = "General")]
-    public class PaymentRequest
+    [Table("PaymentDetails", Schema = "General")]
+    public class PaymentDetail
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int? Id { get; set; }
 
-        public int? OriginalKey { get; set; }
-
-        [MaxLength(1000)]
-        public string Data { get; set; }
-
         public State? State { get; set; }
 
-        public DateTime? Date { get; set; }
+        public DateTime? DateTime { get; set; }
 
         public int? OriginalUserId { get; set; }
+
+        public int? PaymentRequestId { get; set; }
+
+        [ForeignKey(nameof(PaymentRequestId))]
+        public Payment PaymentRequest { get; set; }
     }
 }

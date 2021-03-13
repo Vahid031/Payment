@@ -1,13 +1,13 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
-using DatabaseContext.Context;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
-using DomainModels.Entities;
-using DomainModels.Enums;
+using Domain.Entities;
 using System;
+using Web.Interfaces;
+using Domain.Context;
 
-namespace Services.General.PaymentService
+namespace Web.Concretes
 {
 
     public class PaymentService : IPaymentService

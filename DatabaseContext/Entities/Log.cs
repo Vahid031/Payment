@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace DomainModels.Entities
+namespace Domain.Entities
 {
     [Table("Logs", Schema = "General")]
     public class Log
@@ -11,15 +11,9 @@ namespace DomainModels.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int? Id { get; set; }
 
-        [Display(Name = "نام جدول")]
-        [StringLength(1000)]
+        [StringLength(2000)]
         public string Data { get; set; }
 
-        public int? State { get; set; }
-
-        [Display(Name = "تاریخ ثبت")]
-        [DisplayFormat(DataFormatString = "{yyyy-MM-dd HH:mm}")]
-        public DateTime? Date { get; set; }
-
+        public DateTime? DateTime { get; set; }
     }
 }

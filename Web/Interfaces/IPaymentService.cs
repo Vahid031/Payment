@@ -1,12 +1,10 @@
-using DomainModels.Entities;
+using Domain.Entities;
 using System;
 
-namespace Services.General.PaymentService
+namespace Web.Interfaces
 {
     public interface IPaymentService 
     {
         Payment GetByOriginalKey(int OriginalKey, Uri returnUrl);
-
-        Payment Add(int OriginalKey, Uri returnUrl);
     }
 }

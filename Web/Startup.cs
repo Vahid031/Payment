@@ -1,5 +1,4 @@
-﻿using DatabaseContext.Context;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -7,11 +6,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Http;
-using Services.General.PaymentService;
-using System.IdentityModel.Tokens.Jwt;
-using Microsoft.OpenApi.Models;
-using System;
 using Web.Middlewares;
+using Web.Interfaces;
+using Web.Concretes;
+using Domain.Context;
 
 namespace Web
 {
@@ -39,28 +37,28 @@ namespace Web
             });
 
             services.AddRazorPages();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo
-                {
-                    Version = "v1",
-                    Title = "Online Payment",
-                    Description = "Swagger UI for SAP Online Payment",
-                    TermsOfService = new Uri("http://saapp.ir/"),
-                    //Contact = new OpenApiContact
-                    //{
-                    //    Name = "Shayne Boyer",
-                    //    Email = string.Empty,
-                    //    Url = new Uri("https://twitter.com/spboyer"),
-                    //},
-                    //License = new OpenApiLicense
-                    //{
-                    //    Name = "Use under LICX",
-                    //    Url = new Uri("https://example.com/license"),
-                    //}
-                });
-            }
-            );
+            //services.AddSwaggerGen(c =>
+            //{
+            //    c.SwaggerDoc("v1", new OpenApiInfo
+            //    {
+            //        Version = "v1",
+            //        Title = "Online Payment",
+            //        Description = "Swagger UI for SAP Online Payment",
+            //        TermsOfService = new Uri("http://saapp.ir/"),
+            //        //Contact = new OpenApiContact
+            //        //{
+            //        //    Name = "Shayne Boyer",
+            //        //    Email = string.Empty,
+            //        //    Url = new Uri("https://twitter.com/spboyer"),
+            //        //},
+            //        //License = new OpenApiLicense
+            //        //{
+            //        //    Name = "Use under LICX",
+            //        //    Url = new Uri("https://example.com/license"),
+            //        //}
+            //    });
+            //}
+            //);
 
 
 
@@ -94,11 +92,11 @@ namespace Web
 
             app.UseMiddleware<ErrorHandlerMiddleware>();
 
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "SAP Online Payment");
-            });
+            //app.UseSwagger();
+            //app.UseSwaggerUI(c =>
+            //{
+            //    c.SwaggerEndpoint("/swagger/v1/swagger.json", "SAP Online Payment");
+            //});
 
             app.UseRouting();
 

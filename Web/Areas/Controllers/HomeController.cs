@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics;
-using DomainModels.Entities;
+using Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Services.General.PaymentService;
+using Web.Interfaces;
 
 namespace Web.Pages.General.Controllers
 {
