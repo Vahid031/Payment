@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+    <link href="~/lib/bootstrap/4.4.1/content/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap-select/1.13.12/content/Content/bootstrap-select.css" rel="stylesheet" />
+    <link href="~/css/style.css" rel="stylesheet" />
+    <link href="~/lib/jquery.ui.combined/1.12.1/Content/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+    <link href="~/lib/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/css/CustomInput.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+
+    <script src="~/lib/jquery/3.4.1/Content/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/lib/popper.js/1.16.1/content/Scripts/umd/popper.min.js"></script>
+    <script src="~/lib/bootstrap/4.4.1/content/Scripts/bootstrap.min.js"></script>
+    <script src="~/lib/bootstrap-select/1.13.12/content/Scripts/bootstrap-select.js"></script>
+    <script src="~/lib/jquery.ui.combined/1.12.1/Content/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/js/JScript.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

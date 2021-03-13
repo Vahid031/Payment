@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "پرداخت آنلاین";
+}
+<style>
+
+    #container {
+        box-shadow: 5px 5px 10px #888888;
+        padding: 30px;
+       text-align:center;
+    }
+
+    #return {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: flex-end;
+        height: 250px;
+    }
+
+</style>
+
+<div class="text-center" id="container">
+    <div >
+        <h2 class="text-success">پرداخت با موفقیت انجام شد</h2>
+        <!--<h3 class="text-muted">شماره پیگیری :</h3>-->
+    </div>
+    <div id="return">
+        <a href="http:\\google.com" class="btn btn-success w-50">بازگشت با سایت اصلی</a>
+    </div>
+</div>
+
+
+@section scripts {
+    <script>
+        $(function () {
+
+            var $button = $('#return a');
+            var second = 10;
+
+            setInterval(TimerEvent, 1000);
+
+            function TimerEvent() {
+                $button.text(`بازگشت با سایت اصلی (${second--})`);
+
+                if (second <= 0) {
+                    $button.click();
+                }
+            }
+
+
+        });
+
+    </script>
+}
