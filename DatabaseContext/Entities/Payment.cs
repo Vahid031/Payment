@@ -12,22 +12,24 @@ namespace Domain.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int? Id { get; set; }
 
-        public int? OriginalKey { get; set; }
+        [MaxLength(20)]
+        public string OriginalKey { get; set; }
 
         [Column(TypeName = "decimal(18,4)")]
         public decimal? Amount { get; set; }
 
-        [MaxLength(1000)]
-        public string Data { get; set; }
-
         [MaxLength(100)]
         public string ReturnUrl { get; set; }
 
-        [MaxLength(100)]
+        [MaxLength(300)]
         public string Signature { get; set; }
 
-        public ICollection<PaymentDetail> PaymentDetail { get; set; }
+        [MaxLength(20)]
+        public string OriginalUserId { get; set; }
 
-        public bool? IsClose { get; set; } = false;
+        [MaxLength(20)]
+        public string OriginalUserName { get; set; }
+
+        public IList<PaymentDetail> PaymentDetails { get; set; } = new List<PaymentDetail>();
     }
 }

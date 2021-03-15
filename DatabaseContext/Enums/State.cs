@@ -6,7 +6,7 @@ namespace Domain.Enums
 {
     public enum State
     {
-        RequestFromUser = 1,
+        NewRequest = 1,
         SendToGateway = 2,
         RequestFailed = 3,
         RequestSucceed = 4,
@@ -22,7 +22,7 @@ namespace Domain.Enums
 
             switch (state)
             {
-                case State.RequestFromUser:
+                case State.NewRequest:
                     message = "درخواست ارسالی";
                     break;
                 case State.SendToGateway:

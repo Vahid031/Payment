@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Domain.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210313090743_MigrateModel_01")]
+    [Migration("20210315072159_MigrateModel_01")]
     partial class MigrateModel_01
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,7 +23,7 @@ namespace Domain.Migrations
 
             modelBuilder.Entity("Domain.Entities.Log", b =>
                 {
-                    b.Property<int?>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -32,8 +32,12 @@ namespace Domain.Migrations
                         .HasColumnType("nvarchar(2000)")
                         .HasMaxLength(2000);
 
-                    b.Property<DateTime?>("DateTime")
+                    b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("nvarchar(10)")
+                        .HasMaxLength(10);
 
                     b.HasKey("Id");
 
@@ -50,23 +54,17 @@ namespace Domain.Migrations
                     b.Property<decimal?>("Amount")
                         .HasColumnType("decimal(18,4)");
 
-                    b.Property<string>("Data")
-                        .HasColumnType("nvarchar(1000)")
-                        .HasMaxLength(1000);
-
-                    b.Property<bool?>("IsClose")
-                        .HasColumnType("bit");
-
-                    b.Property<int?>("OriginalKey")
-                        .HasColumnType("int");
+                    b.Property<string>("OriginalKey")
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
 
                     b.Property<string>("ReturnUrl")
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
                     b.Property<string>("Signature")
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
 
                     b.HasKey("Id");
 
@@ -80,13 +78,18 @@ namespace Domain.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime?>("DateTime")
+                    b.Property<DateTime?>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("OriginalUserId")
-                        .HasColumnType("int");
+                    b.Property<string>("OriginalUserId")
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
 
-                    b.Property<int?>("PaymentRequestId")
+                    b.Property<string>("OriginalUserName")
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.Property<int?>("PaymentId")
                         .HasColumnType("int");
 
                     b.Property<int?>("State")
@@ -94,16 +97,16 @@ namespace Domain.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PaymentRequestId");
+                    b.HasIndex("PaymentId");
 
                     b.ToTable("PaymentDetails","General");
                 });
 
             modelBuilder.Entity("Domain.Entities.PaymentDetail", b =>
                 {
-                    b.HasOne("Domain.Entities.Payment", "PaymentRequest")
-                        .WithMany("PaymentDetail")
-                        .HasForeignKey("PaymentRequestId");
+                    b.HasOne("Domain.Entities.Payment", "Payment")
+                        .WithMany("PaymentDetails")
+                        .HasForeignKey("PaymentId");
                 });
 #pragma warning restore 612, 618
         }

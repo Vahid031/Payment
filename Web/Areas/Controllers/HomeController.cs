@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Web.Interfaces;
 
-namespace Web.Pages.General.Controllers
+namespace Web.Areas.Controllers
 {
     public class HomeController : Controller
     {

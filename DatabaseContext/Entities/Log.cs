@@ -9,11 +9,14 @@ namespace Domain.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int? Id { get; set; }
+        public int Id { get; set; }
 
         [StringLength(2000)]
         public string Data { get; set; }
 
-        public DateTime? DateTime { get; set; }
+        [StringLength(10)]
+        public string Type { get; set; }
+
+        public DateTime Date { get; set; }
     }
 }

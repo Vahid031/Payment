@@ -18,7 +18,8 @@ namespace Domain.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Data = table.Column<string>(maxLength: 2000, nullable: true),
-                    DateTime = table.Column<DateTime>(nullable: true)
+                    Type = table.Column<string>(maxLength: 10, nullable: true),
+                    Date = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -32,12 +33,10 @@ namespace Domain.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    OriginalKey = table.Column<int>(nullable: true),
+                    OriginalKey = table.Column<string>(maxLength: 20, nullable: true),
                     Amount = table.Column<decimal>(type: "decimal(18,4)", nullable: true),
-                    Data = table.Column<string>(maxLength: 1000, nullable: true),
                     ReturnUrl = table.Column<string>(maxLength: 100, nullable: true),
-                    Signature = table.Column<string>(maxLength: 100, nullable: true),
-                    IsClose = table.Column<bool>(nullable: true)
+                    Signature = table.Column<string>(maxLength: 200, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -52,16 +51,17 @@ namespace Domain.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     State = table.Column<int>(nullable: true),
-                    DateTime = table.Column<DateTime>(nullable: true),
-                    OriginalUserId = table.Column<int>(nullable: true),
-                    PaymentRequestId = table.Column<int>(nullable: true)
+                    Date = table.Column<DateTime>(nullable: true),
+                    OriginalUserId = table.Column<string>(maxLength: 20, nullable: true),
+                    OriginalUserName = table.Column<string>(maxLength: 20, nullable: true),
+                    PaymentId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PaymentDetails", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_PaymentDetails_Payments_PaymentRequestId",
-                        column: x => x.PaymentRequestId,
+                        name: "FK_PaymentDetails_Payments_PaymentId",
+                        column: x => x.PaymentId,
                         principalSchema: "General",
                         principalTable: "Payments",
                         principalColumn: "Id",
@@ -69,10 +69,10 @@ namespace Domain.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_PaymentDetails_PaymentRequestId",
+                name: "IX_PaymentDetails_PaymentId",
                 schema: "General",
                 table: "PaymentDetails",
-                column: "PaymentRequestId");
+                column: "PaymentId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

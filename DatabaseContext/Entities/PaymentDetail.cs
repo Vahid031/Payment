@@ -14,13 +14,11 @@ namespace Domain.Entities
 
         public State? State { get; set; }
 
-        public DateTime? DateTime { get; set; }
+        public DateTime? Date { get; set; }
 
-        public int? OriginalUserId { get; set; }
+        public int? PaymentId { get; set; }
 
-        public int? PaymentRequestId { get; set; }
-
-        [ForeignKey(nameof(PaymentRequestId))]
-        public Payment PaymentRequest { get; set; }
+        [ForeignKey(nameof(PaymentId))]
+        public Payment Payment { get; set; }
     }
 }

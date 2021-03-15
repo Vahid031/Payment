@@ -90,7 +90,7 @@ namespace Web
 
             app.UseStaticFiles();
 
-            app.UseMiddleware<ErrorHandlerMiddleware>();
+            //app.UseMiddleware<ErrorHandlerMiddleware>();
 
             //app.UseSwagger();
             //app.UseSwaggerUI(c =>

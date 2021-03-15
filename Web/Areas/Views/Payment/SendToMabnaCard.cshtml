@@ -1,0 +1,17 @@
+﻿@model Web.ViewModels.MabnaCardRequest
+
+<form id="frmPost" method="post" action="https://mabna.shaparak.ir:8080/payment/pay">
+
+    <input type="hidden" asp-for="TerminalID" />
+    <input type="hidden" asp-for="Amount" />
+    <input type="hidden" asp-for="CallbackURL" />
+    <input type="hidden" asp-for="InvoiceID" />
+    <input type="hidden" asp-for="Payload" />
+
+</form>
+
+@section Scripts{
+    <script>
+        $('#frmPost').submit();
+    </script>
+}

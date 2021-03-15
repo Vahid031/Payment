@@ -1,0 +1,14 @@
+﻿@model Web.ViewModels.MabnaCardResponse
+
+<form id="frmPost" method="post" action="https://mabna.shaparak.ir:8081/V1/PeymentApi/Advice">
+
+    <input type="hidden" asp-for="digitalreceipt" />
+    <input type="hidden" asp-for="Tid" />
+
+</form>
+
+@section Scripts{
+    <script>
+        $('#frmPost').submit();
+    </script>
+}
