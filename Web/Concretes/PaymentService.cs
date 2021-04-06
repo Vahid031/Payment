@@ -23,9 +23,9 @@ namespace Web.Concretes
             _db = db;
         }
 
-        public Payment GetByOriginalKey(string originalKey, Uri returnUrl)
+        public Payment GetByBilligId(string billigId, Uri returnUrl)
         {
-            return _db.Payments.Where(m => m.OriginalKey.Equals(originalKey)).FirstOrDefault();
+            return _db.Payments.Where(m => m.BilligId.Equals(billigId)).FirstOrDefault();
         }
 
         public bool ControlRequest(PaymentRequestViewModel prvm)
@@ -46,11 +46,11 @@ namespace Web.Concretes
             var payment = new Payment
             {
                 Amount = prvm.Amount,
-                OriginalKey = prvm.Id,
+                BilligId = prvm.BilligId,
+                PaymentCode = prvm.PaymentCode,
                 Signature = prvm.Signature,
                 ReturnUrl = prvm.ReturnUrl,
-                OriginalUserId = prvm.UserId,
-                OriginalUserName = prvm.UserName
+                OriginalUserId = prvm.UserId
             };
 
 

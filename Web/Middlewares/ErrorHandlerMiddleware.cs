@@ -11,15 +11,14 @@ namespace Web.Middlewares
     public class ErrorHandlerMiddleware
     {
         private readonly RequestDelegate _next;
-        //private readonly IAppDbContext _db;
+        private readonly IAppDbContext _db;
 
-        public ErrorHandlerMiddleware(RequestDelegate next)//, IAppDbContext db)
+        public ErrorHandlerMiddleware(RequestDelegate next)
         {
             _next = next;
-            //_db = db;
         }
 
-        public async Task Invoke(HttpContext context)
+        public async Task Invoke(HttpContext context, IAppDbContext db)
         {
             try
             {
@@ -42,13 +41,13 @@ namespace Web.Middlewares
                 await response.WriteAsync("مشکلی در ارتباط با سرور رخ داده است");
 
             }
-            //_db.Logs.Add(new Log
-            //{
-            //    Date = DateTime.Now,
-            //    Data = JsonConvert.SerializeObject(context.Response),
-            //    Type = "Response"
-            //});
-            //await _db.SaveChangesAsync();
+            _db.Logs.Add(new Log
+            {
+                Date = DateTime.Now,
+                Data = JsonConvert.SerializeObject(context.Response),
+                Type = "Response"
+            });
+            await _db.SaveChangesAsync();
         }
     }
 }

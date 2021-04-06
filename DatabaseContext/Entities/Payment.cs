@@ -12,8 +12,11 @@ namespace Domain.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int? Id { get; set; }
 
-        [MaxLength(20)]
-        public string OriginalKey { get; set; }
+        [MaxLength(15)]
+        public string BilligId { get; set; }
+
+        [MaxLength(15)]
+        public string PaymentCode { get; set; }
 
         [Column(TypeName = "decimal(18,4)")]
         public decimal? Amount { get; set; }
@@ -26,9 +29,6 @@ namespace Domain.Entities
 
         [MaxLength(20)]
         public string OriginalUserId { get; set; }
-
-        [MaxLength(20)]
-        public string OriginalUserName { get; set; }
 
         public IList<PaymentDetail> PaymentDetails { get; set; } = new List<PaymentDetail>();
     }

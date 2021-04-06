@@ -29,7 +29,7 @@ namespace Web.Areas.Controllers
         {
             var h = HttpContext;
 
-            var entity = paymentService.GetByOriginalKey(prvm.Id, new Uri(prvm.ReturnUrl));
+            var entity = paymentService.GetByBilligId(prvm.BilligId, new Uri(prvm.ReturnUrl));
 
             if (!paymentService.ControlRequest(prvm))
             {
@@ -38,7 +38,7 @@ namespace Web.Areas.Controllers
             else if (entity is null)
             {
                 await paymentService.AddRequest(prvm);
-                entity = paymentService.GetByOriginalKey(prvm.Id, new Uri(prvm.ReturnUrl));
+                entity = paymentService.GetByBilligId(prvm.BilligId, new Uri(prvm.ReturnUrl));
 
                 return View(nameof(SendToMabnaCard), new MabnaCardRequest
                 {

@@ -1,21 +1,24 @@
 ﻿using System;
+using System.ComponentModel;
 using Newtonsoft.Json;
 
 namespace Web.ViewModels
 {
     public class PaymentRequestViewModel
     {
-        public string Id { get; set; }
+        [DisplayName("شناسه قبض")]
+        public string BilligId { get; set; }
+
+        [DisplayName("شناسه پرداخت")]
+        public string PaymentCode { get; set; }
 
         public decimal Amount { get; set; }
 
         public string ReturnUrl { get; set; }
 
+        public string UserId { get; set; }
+
         [JsonIgnore]
         public string Signature { get; set; }
-
-        public string UserName { get; set; }
-
-        public string UserId { get; set; }
     }
 }

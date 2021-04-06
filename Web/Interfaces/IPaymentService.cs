@@ -8,7 +8,7 @@ namespace Web.Interfaces
 {
     public interface IPaymentService 
     {
-        Payment GetByOriginalKey(string originalKey, Uri returnUrl);
+        Payment GetByBilligId(string billigId, Uri returnUrl);
 
         bool ControlRequest(PaymentRequestViewModel prvm);
 
