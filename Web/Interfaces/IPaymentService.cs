@@ -8,12 +8,14 @@ namespace Web.Interfaces
 {
     public interface IPaymentService 
     {
-        Payment GetByBilligId(string billigId, Uri returnUrl);
+        Payment GetByBillingId(string BillingId);
 
         bool ControlRequest(PaymentRequestViewModel prvm);
 
         Task AddRequest(PaymentRequestViewModel prvm);
 
         Task ChangeStatus(int id, State state);
+
+        string CreateSignature(PaymentResponseViewModel prvm);
     }
 }

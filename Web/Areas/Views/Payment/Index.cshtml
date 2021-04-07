@@ -10,21 +10,20 @@
         text-align: center;
     }
 
-    #return {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        justify-content: flex-end;
-        height: 250px;
-    }
 </style>
 
-<form id="container" asp-action="NewRequest" asp-controller="Payment" class="text-center">
+<form id="container" method="post" asp-action="Index" class="text-center">
+    @if (!ViewData.ModelState.IsValid)
+    {
+    <div class="alert alert-danger" role="alert">
+        @Html.ValidationSummary(false, "", new { @style = "text-align: initial;" })
+    </div>
+    }    
     <div class="row">
         <div class="offset-xl-4 offset-lg-4 offset-md-3"></div>
         <div class="form-group col-xl-4 col-lg-4 col-md-6 col-sm-12">
-            <label asp-for="BilligId"></label>
-            <input type="text" class="form-control text-center" asp-for="BilligId">
+            <label asp-for="BillingId"></label>
+            <input type="text" class="form-control text-center" asp-for="BillingId">
         </div>
     </div>
     <div class="row">
@@ -43,7 +42,7 @@
 </form>
 
 
-@section scripts {
+@*@section scripts {
     <script>
         $(function () {
 
@@ -64,4 +63,4 @@
         });
 
     </script>
-}
+}*@

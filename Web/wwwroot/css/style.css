@@ -180,13 +180,13 @@ main[role='main'] {
 }
 
 .input-validation-error {
-    border: 4px solid #f00;
-    background-color: #fee;
+   /* border: 4px solid #f00;
+    background-color: #fee;*/
 }
 
     .input-validation-error:focus {
-        border: 1px solid #fee;
-        background-color: #fee;
+        /*border: 1px solid #fee;
+        background-color: #fee;*/
     }
 
 .label-validation {
@@ -200,8 +200,8 @@ main[role='main'] {
 }
 
 .validation-summary-errors {
-    font-weight: bold;
-    color: #f00;
+    /*font-weight: bold;
+    color: #f00;*/
 }
 
 

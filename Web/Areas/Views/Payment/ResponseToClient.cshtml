@@ -1,0 +1,18 @@
+﻿@model Web.ViewModels.PaymentResponseViewModel
+
+<form id="frmPost" method="post" action="@Model.ReturnUrl">
+
+    <input type="hidden" asp-for="Message" />
+    <input type="hidden" asp-for="PaymentCode" />
+    <input type="hidden" asp-for="Signature" />
+    <input type="hidden" asp-for="Success" />
+    <input type="hidden" asp-for="BillingId" />
+    <input type="hidden" asp-for="Amount" />
+
+</form>
+
+@section Scripts{
+    <script>
+        $('#frmPost').submit();
+    </script>
+}

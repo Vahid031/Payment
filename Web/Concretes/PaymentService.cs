@@ -23,9 +23,9 @@ namespace Web.Concretes
             _db = db;
         }
 
-        public Payment GetByBilligId(string billigId, Uri returnUrl)
+        public Payment GetByBillingId(string BillingId)
         {
-            return _db.Payments.Where(m => m.BilligId.Equals(billigId)).FirstOrDefault();
+            return _db.Payments.Where(m => m.BillingId.Equals(BillingId)).FirstOrDefault();
         }
 
         public bool ControlRequest(PaymentRequestViewModel prvm)
@@ -41,12 +41,25 @@ namespace Web.Concretes
             return prvm.Signature.Equals(string.Join(".", result));
         }
 
+        public string CreateSignature(PaymentResponseViewModel prvm)
+        {
+            string json = JsonConvert.SerializeObject(prvm);
+
+            byte[] data = Encoding.UTF8.GetBytes(json);
+            byte[] result;
+            using (SHA512 sha512 = new SHA512Managed())
+            {
+                result = sha512.ComputeHash(data);
+            }
+            return string.Join(".", result);
+        }
+
         public async Task AddRequest(PaymentRequestViewModel prvm)
         {
             var payment = new Payment
             {
                 Amount = prvm.Amount,
-                BilligId = prvm.BilligId,
+                BillingId = prvm.BillingId,
                 PaymentCode = prvm.PaymentCode,
                 Signature = prvm.Signature,
                 ReturnUrl = prvm.ReturnUrl,

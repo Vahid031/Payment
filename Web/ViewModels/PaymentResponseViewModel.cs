@@ -4,7 +4,7 @@ namespace Web.ViewModels
 {
     public class PaymentResponseViewModel
     {
-        public string BilligId { get; set; }
+        public string BillingId { get; set; }
 
         public string PaymentCode { get; set; }
 

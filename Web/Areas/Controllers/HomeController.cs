@@ -3,6 +3,8 @@ using Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Web.Interfaces;
+using System;
+using Newtonsoft.Json;
 
 namespace Web.Areas.Controllers
 {
@@ -17,10 +19,7 @@ namespace Web.Areas.Controllers
             this.paymentService = paymentService;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

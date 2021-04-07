@@ -21,7 +21,35 @@ namespace Web.Areas.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return Content("Vahid");
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Index(PaymentRequestViewModel model)
+        {
+            var entity = paymentService.GetByBillingId(model.BillingId);
+
+            if (entity is null)
+            {
+                ModelState.AddModelError(nameof(model.BillingId), "شناسه قبض مورد نظر یافت نشد");
+            }
+            else if (entity.PaymentCode != model.PaymentCode)
+            {
+                ModelState.AddModelError(nameof(model.BillingId), "شناسه پرداخت اشتباه است");
+            }
+
+            if (!ModelState.IsValid)
+                return View(model);
+
+
+            return View(nameof(SendToMabnaCard), new MabnaCardRequest
+            {
+                Amount = Convert.ToInt64(entity.Amount.Value),
+                CallbackURL = "https://localhost:44374/payment/ResponseFromMabnaCard",
+                InvoiceID = model.BillingId,
+                TerminalID = "69002892",
+                Payload = JsonConvert.SerializeObject(model)
+            });
         }
 
         [HttpPost]
@@ -29,7 +57,7 @@ namespace Web.Areas.Controllers
         {
             var h = HttpContext;
 
-            var entity = paymentService.GetByBilligId(prvm.BilligId, new Uri(prvm.ReturnUrl));
+            var entity = paymentService.GetByBillingId(prvm.BillingId);
 
             if (!paymentService.ControlRequest(prvm))
             {
@@ -38,11 +66,11 @@ namespace Web.Areas.Controllers
             else if (entity is null)
             {
                 await paymentService.AddRequest(prvm);
-                entity = paymentService.GetByBilligId(prvm.BilligId, new Uri(prvm.ReturnUrl));
+                entity = paymentService.GetByBillingId(prvm.BillingId);
 
                 return View(nameof(SendToMabnaCard), new MabnaCardRequest
                 {
-                    Amount = prvm.Amount,
+                    Amount = Convert.ToInt64(entity.Amount.Value),
                     CallbackURL = "https://localhost:44374/payment/ResponseFromMabnaCard",
                     InvoiceID = entity.Id.ToString(),
                     TerminalID = "69002892",
@@ -72,20 +100,48 @@ namespace Web.Areas.Controllers
             {
                 var prvm = JsonConvert.DeserializeObject<PaymentRequestViewModel>(mcr.Payload);
 
+                var responseModel = new PaymentResponseViewModel
+                {
+                    Amount = prvm.Amount,
+                    BillingId = prvm.BillingId,
+                    PaymentCode = prvm.PaymentCode,
+                    ReturnUrl = prvm.ReturnUrl,
+                    Success = false,
+                    Message = "تراکنش با موفقیت انجام شد",
+                };
+
                 await paymentService.ChangeStatus(int.Parse(mcr.InvoiceID), State.RequestSucceed);
 
-                Redirect(prvm.ReturnUrl);
+                return View(nameof(ResponseToClient), responseModel);
             }
             else if (mcr.respcode.Equals("-1"))
             {
                 var prvm = JsonConvert.DeserializeObject<PaymentRequestViewModel>(mcr.Payload);
 
+
+                var responseModel = new PaymentResponseViewModel
+                {
+                    Amount = prvm.Amount,
+                    BillingId = prvm.BillingId,
+                    PaymentCode = prvm.PaymentCode,
+                    ReturnUrl = prvm.ReturnUrl,
+                    Success = false,
+                    Message = "تراکنش ناموفق بود",
+                };
+
+                responseModel.Signature = paymentService.CreateSignature(responseModel);
+
                 await paymentService.ChangeStatus(int.Parse(mcr.InvoiceID), State.RequestFailed);
 
-                return Redirect(prvm.ReturnUrl);
+                return View(nameof(ResponseToClient), responseModel);
             }
 
             return Content("");
+        }
+
+        public IActionResult ResponseToClient(PaymentResponseViewModel prvm)
+        {
+            return View(prvm);
         }
     }
 }

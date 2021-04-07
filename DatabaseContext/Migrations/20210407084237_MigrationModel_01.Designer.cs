@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Domain.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210406093316_MigrationModel_04")]
-    partial class MigrationModel_04
+    [Migration("20210407084237_MigrationModel_01")]
+    partial class MigrationModel_01
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -54,15 +54,11 @@ namespace Domain.Migrations
                     b.Property<decimal?>("Amount")
                         .HasColumnType("decimal(18,4)");
 
-                    b.Property<string>("BilligId")
+                    b.Property<string>("BillingId")
                         .HasColumnType("nvarchar(15)")
                         .HasMaxLength(15);
 
                     b.Property<string>("OriginalUserId")
-                        .HasColumnType("nvarchar(20)")
-                        .HasMaxLength(20);
-
-                    b.Property<string>("OriginalUserName")
                         .HasColumnType("nvarchar(20)")
                         .HasMaxLength(20);
 

@@ -7,7 +7,7 @@ namespace Web.ViewModels
     public class PaymentRequestViewModel
     {
         [DisplayName("شناسه قبض")]
-        public string BilligId { get; set; }
+        public string BillingId { get; set; }
 
         [DisplayName("شناسه پرداخت")]
         public string PaymentCode { get; set; }

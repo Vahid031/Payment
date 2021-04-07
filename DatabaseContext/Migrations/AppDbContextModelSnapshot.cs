@@ -52,7 +52,7 @@ namespace Domain.Migrations
                     b.Property<decimal?>("Amount")
                         .HasColumnType("decimal(18,4)");
 
-                    b.Property<string>("BilligId")
+                    b.Property<string>("BillingId")
                         .HasColumnType("nvarchar(15)")
                         .HasMaxLength(15);
 

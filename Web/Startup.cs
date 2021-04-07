@@ -76,6 +76,7 @@ namespace Web
             }
             else
             {
+                app.UseMiddleware<ErrorHandlerMiddleware>();
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
@@ -90,7 +91,7 @@ namespace Web
 
             app.UseStaticFiles();
 
-            //app.UseMiddleware<ErrorHandlerMiddleware>();
+           
 
             //app.UseSwagger();
             //app.UseSwaggerUI(c =>
@@ -104,7 +105,7 @@ namespace Web
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Payment}/{action=Index}/{id?}");
             });
 
 

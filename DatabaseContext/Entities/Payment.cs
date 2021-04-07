@@ -13,7 +13,7 @@ namespace Domain.Entities
         public int? Id { get; set; }
 
         [MaxLength(15)]
-        public string BilligId { get; set; }
+        public string BillingId { get; set; }
 
         [MaxLength(15)]
         public string PaymentCode { get; set; }
