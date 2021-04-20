@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Domain.Entities;
+using DataAccess.Entities;
 using Web.ViewModels;
 using System;
 using Web.Interfaces;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Domain.Enums;
+using DataAccess.Enums;
 
 namespace Web.Areas.Controllers
 {

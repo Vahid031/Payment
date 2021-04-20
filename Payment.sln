@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web", "Web\Web.csproj", "{15C8A846-C880-4957-8B53-A36D94730C25}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "DatabaseContext\Domain.csproj", "{0EDA6FD7-D5F1-44D0-A334-664DFBCD02F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DatabaseContext\DataAccess.csproj", "{0EDA6FD7-D5F1-44D0-A334-664DFBCD02F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using Domain.Enums;
+using DataAccess.Enums;
 
-namespace Domain.Entities
+namespace DataAccess.Entities
 {
     [Table("PaymentDetails", Schema = "General")]
     public class PaymentDetail

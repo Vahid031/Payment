@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Domain.Migrations
+namespace DataAccess.Migrations
 {
     public partial class MigrationModel_01 : Migration
     {

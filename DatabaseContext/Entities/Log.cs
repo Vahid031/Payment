@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace Domain.Entities
+namespace DataAccess.Entities
 {
     [Table("Logs", Schema = "General")]
     public class Log

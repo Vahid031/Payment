@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Web.Middlewares;
 using Web.Interfaces;
 using Web.Concretes;
-using Domain.Context;
+using DataAccess.Context;
 
 namespace Web
 {
@@ -24,7 +24,7 @@ namespace Web
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            //services.AddControllersWithViews();
 
             services.AddDbContext<AppDbContext>(options =>
        options.UseSqlServer(Configuration.GetConnectionString("DbConnectionString")));
@@ -36,7 +36,8 @@ namespace Web
                 options.ViewLocationFormats.Add("/Areas/Views/Shared/{0}" + RazorViewEngine.ViewExtension);
             });
 
-            services.AddRazorPages();
+            //services.AddRazorPages();
+            services.AddMvc();
             //services.AddSwaggerGen(c =>
             //{
             //    c.SwaggerDoc("v1", new OpenApiInfo
@@ -76,10 +77,10 @@ namespace Web
             }
             else
             {
-                app.UseMiddleware<ErrorHandlerMiddleware>();
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+                app.UseMiddleware<ErrorHandlerMiddleware>();
 
             using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
             {
@@ -107,7 +108,6 @@ namespace Web
                     name: "default",
                     pattern: "{controller=Payment}/{action=Index}/{id?}");
             });
-
 
         }
     }

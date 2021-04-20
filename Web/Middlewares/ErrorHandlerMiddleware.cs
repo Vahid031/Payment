@@ -2,8 +2,8 @@
 using System;
 using System.Net;
 using System.Threading.Tasks;
-using Domain.Context;
-using Domain.Entities;
+using DataAccess.Context;
+using DataAccess.Entities;
 using Newtonsoft.Json;
 
 namespace Web.Middlewares
@@ -40,13 +40,13 @@ namespace Web.Middlewares
                 await response.WriteAsync("مشکلی در ارتباط با سرور رخ داده است");
 
             }
-            db.Logs.Add(new Log
-            {
-                Date = DateTime.Now,
-                Data = JsonConvert.SerializeObject(context.Response),
-                Type = "Response"
-            });
-            await db.SaveChangesAsync();
+            //db.Logs.Add(new Log
+            //{
+            //    Date = DateTime.Now,
+            //    Data = JsonConvert.SerializeObject(context.Response),
+            //    Type = "Response"
+            //});
+            //await db.SaveChangesAsync();
         }
     }
 }

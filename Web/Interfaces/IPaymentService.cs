@@ -1,5 +1,5 @@
-using Domain.Entities;
-using Domain.Enums;
+using DataAccess.Entities;
+using DataAccess.Enums;
 using System;
 using System.Threading.Tasks;
 using Web.ViewModels;
@@ -17,5 +17,7 @@ namespace Web.Interfaces
         Task ChangeStatus(int id, State state);
 
         string CreateSignature(PaymentResponseViewModel prvm);
+
+        bool CheckTransaction(string BillingId);
     }
 }

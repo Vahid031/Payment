@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 
-namespace Domain.Entities
+namespace DataAccess.Entities
 {
     [Table("Payments", Schema = "General")]
     public class Payment

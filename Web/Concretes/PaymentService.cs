@@ -1,11 +1,11 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using Domain.Entities;
+using DataAccess.Entities;
 using System;
 using Web.Interfaces;
-using Domain.Context;
+using DataAccess.Context;
 using Web.ViewModels;
-using Domain.Enums;
+using DataAccess.Enums;
 using System.Security.Cryptography;
 using System.Collections.Generic;
 using Newtonsoft.Json;
@@ -89,6 +89,16 @@ namespace Web.Concretes
             });
 
             await _db.SaveChangesAsync();
+        }
+
+        public bool CheckTransaction(string BillingId)
+        {
+            return _db.Payments
+                    .Where(m => m.BillingId
+                    .Equals(BillingId))
+                    .FirstOrDefault()
+                    .PaymentDetails
+                    .Any(m => m.State == State.RequestSucceed);
         }
     }
 }

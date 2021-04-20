@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Domain.Entities;
+using DataAccess.Entities;
 using System.Threading.Tasks;
 using System.Threading;
 
-namespace Domain.Context
+namespace DataAccess.Context
 {
     public class AppDbContext : DbContext, IAppDbContext
     {
